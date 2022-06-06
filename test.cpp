@@ -5,35 +5,42 @@
 
 using namespace std;
 
-struct Point
+class Point
 {
-    double x,y;
-    int cluster;
-    double minimal_destance;
 
-Point():
-x(0.0),
-y(0.0),
-cluster(2),
-minimal_destance(__DBL_MAX__) // maximum double value
-{}
+    private :
+int pointId ,dimension,clusterId;
+vector<double> values;
+    Point (int id,vector<double> vecLine){
+   pointId=id;
+  values=vecLine;
+  dimension=values.size();
+  clusterId=0;
 
-Point (double x ,double y):
-x(x),
-y(y),
-cluster(2),
-minimal_destance(__DBL_MAX__){}
+    }
 
-
-double distance(Point n){
-    return (n.x -x)*(n.x -x) + (n.y - y)*(n.y - y);
+int getPointId(){
+    return pointId;
 }
-};
+int getDemension(){
+    return dimension;}
+    
+void setClusternum(int num){
+        clusterId=num;
+    }
+
+
+}
+;
+
+
+
+
 
 bool getFileContent(string fileName,vector<string> & vecOfStrs){
     ifstream in(fileName.c_str());
     if (!in) {
-        cout << "Cannot open file " << fileName << std::endl;
+        cout << "Cannot open file " << fileName << endl;
         return false;
     }
     string str;
@@ -60,7 +67,7 @@ int main (){
     {
         for (int i = 0; i < 10; i++)
         {
-            cout<<vecOfStr[i]<<endl;
+            cout<<vecOfStr.size()<<endl;
             
         }
         
