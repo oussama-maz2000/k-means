@@ -89,5 +89,6 @@
     "utility": "cpp",
     "vector": "cpp",
     "fstream": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }
