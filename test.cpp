@@ -8,7 +8,7 @@ using namespace std;
 class Point
 {
 
-    private :
+    public :
        int pointId ,dimension,clusterId;
        vector<double> values;
 public: Point (int id,vector<double> vecLine){
@@ -35,7 +35,7 @@ double getvalue(int index){
 
 
 class Cluster {
-
+public : 
     int clusterId;
     vector<double> centroid;
     vector<Point> points;
@@ -74,7 +74,7 @@ class Cluster {
 
     void removeAllPoints() { points.clear(); }
 
-    int getId() { return clusterId; }
+    int getclusterId() { return clusterId; }
 
     Point getPoint(int pos) { return points[pos]; }
 
@@ -86,25 +86,38 @@ class Cluster {
 };
 
 
-/* class Kmeans{
-int K, iters, dimensions, total_points;
+class Kmeans{
+public :
+int k, iterations, dimensions, total_points;
+vector<Cluster>cluster;
+ 
+ public : Kmeans (int k ,int nbr_iterations){
+    this->k=k;
+    this->iterations=nbr_iterations;
+ }
+
+  
 
 
 
 
-}; */
+}; 
 
 
 
 
-bool getFileContent(string fileName,vector<string> & vecOfStrs)
+vector<vector <double> > getFileContent(string fileName,vector<string> & vecOfStrs)
 { 
+    vector< vector<double> > v;
+	vector<double> v1;
+	int c;
   ifstream in(fileName.c_str());
 
     if(!in)
     {
-        cerr << "Cannot open the File : "<<fileName<<endl;
-        return false;
+        /* cout << "Cannot open the File : "<<fileName<<endl; */
+        return v;
+        
     }
     string str;
 
@@ -113,9 +126,22 @@ bool getFileContent(string fileName,vector<string> & vecOfStrs)
 
 vecOfStrs.push_back(str);
     }
-
     in.close();
-    return true;
+
+for (int i = 0; i < vecOfStrs.size(); i++)
+		{
+			istringstream iss(vecOfStrs[i]);
+			copy(istream_iterator<double>(iss),
+				istream_iterator<double>(),
+				back_inserter(v1));
+			if (i == 0) c = v1.size();
+			int k = v1.size() - c;
+			v.push_back(vector<double>());
+			for (int j = 0; j < c; j++)
+				v[i].push_back(v1[k+j]);
+		}
+
+    return v;
 } 
 ;
 
@@ -132,42 +158,19 @@ vecOfStrs.push_back(str);
 
 int main (){
     vector<string> vecOfStr;
-	bool result = getFileContent("base.txt",vecOfStr);
-	vector< vector<double> > v;
-	vector<double> v1;
-	int c;
-	if (result)
-	{
-		for (int i = 0; i < vecOfStr.size(); i++)
-		{
-			istringstream iss(vecOfStr[i]);
-			copy(istream_iterator<double>(iss),
-				istream_iterator<double>(),
-				back_inserter(v1));
-			if (i == 0) c = v1.size();
-			int k = v1.size() - c;
-			v.push_back(vector<double>());
-			for (int j = 0; j < c; j++)
-				v[i].push_back(v1[k+j]);
-		}
-	}
-   
-   Point p1= Point(0,v[0]);
+	vector<vector<double> > result = getFileContent("base.txt",vecOfStr);
+
+
+    Point p1= Point(0,result[0]);
    Cluster c1= Cluster(1,p1);
-   double size=c1.getCentroidByPos(3);
-   cout << size << endl;
+int size =p1.getDemension();
+   cout << "the size of " <<size << endl; 
 
 
 
 
 
 
-/* cout << '[';
-        for (int j = 0; j < v[0].size(); j++){
-            cout<< v[0][j]<<" ";
-
-        }
-        cout << ']' << endl; */
    
 
 }
