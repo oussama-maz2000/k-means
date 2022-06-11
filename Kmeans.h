@@ -4,8 +4,7 @@
 #include <vector>
 using namespace std;
 
-vector<vector<double> > readFileContent(string fileName,vector<string>&vecOfStrs); // function read file and return the content of file in vector of vectors of double 
-
+vector< vector<double> > readFileContent(string fileName,vector<string>&vecOfStrs); // function read file and return the content of file in vector of vectors of double 
 class Point {
 public:
     int pointId; // the ID of point
@@ -47,5 +46,7 @@ public :
 public : 
     Kmeans(int k,int iterations); // constructor with params
     void clearCluster(); //functions remove all values from the cluster
-    int calculateddistance(Point p);// function return the nearsetCluserID and we created 3 variables (double somme ,distance )(int nearcluserID )
+    int calculatedistance(Point p);// function return the nearsetCluserID and we created 3 variables (double somme ,distance )(int nearcluserID )
+    void runKmeans(vector<Point> p); // function running the kmeans procedure and sorry i coudln't finished it  
 };
+void writeFile(vector<Cluster> c,string fileName); // function write the result of Kmeans in file 

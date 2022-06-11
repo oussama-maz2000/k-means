@@ -7,15 +7,14 @@ using namespace std;
 
 class Point
 {
-
-    public :
-       int pointId ,dimension,clusterId;
-       vector<double> values;
+public :
+    int pointId ,dimension,clusterId;
+    vector<double> values;
 public: Point (int id,vector<double> vecLine){
-  pointId=id;
-  values=vecLine;
-  dimension=values.size();
-  clusterId=0;}
+    pointId=id;
+    values=vecLine;
+    dimension=values.size();
+    clusterId=0;}
 
 int getPointId(){
     return pointId;
@@ -28,11 +27,7 @@ void setClusternum(int num){
     }
 double getvalue(int index){
     return values[index];
-
-}
-}
-;
-
+}};
 
 class Cluster {
 public : 
@@ -55,8 +50,6 @@ public :
      p.setClusternum(this->clusterId);
         this->points.push_back(p);
     }
-
-
       bool removePoint(int pointId)
     {
         int size = points.size();
@@ -84,7 +77,6 @@ int getClusterId(){return clusterId;}
 
     void setCentroidByPos(int pos, double val) { this->centroid[pos] = val; }
 };
-
 
 class Kmeans{
 public :
@@ -123,27 +115,22 @@ return nearclusterId;
 }; 
 };
 
-
-
-
 vector<vector <double> > getFileContent(string fileName,vector<string> & vecOfStrs)
 { 
     vector< vector<double> > v;
+    
+
 	vector<double> v1;
 	int c;
   ifstream in(fileName.c_str());
 
     if(!in)
     {
-
-        return v;
-        
+        return  v;
     }
     string str;
-
     while (getline(in, str))
     {
-
 vecOfStrs.push_back(str);
     }
     in.close();
@@ -160,40 +147,9 @@ for (int i = 0; i < vecOfStrs.size(); i++)
 			for (int j = 0; j < c; j++)
 				v[i].push_back(v1[k+j]);
 		}
-
     return v;
-} 
-;
-
-    
- 
-
-
-
-
-
-    
- 
-void run(vector<Point>&poin){
-cout << poin[0].getDemension()<<endl;
-}
-
+} ;
 int main (){
-    vector<string> vecOfStr;
-	vector<vector<double> > result = getFileContent("base.txt",vecOfStr);
-
-
-    Point p1= Point(0,result[0]);
-    //run(result[]);
-   
-
-
-
-
-
-
-   
-
 }
 
 ;
