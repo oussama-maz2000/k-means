@@ -47,4 +47,5 @@ public :
 public : 
     Kmeans(int k,int iterations); // constructor with params
     void clearCluster(); //functions remove all values from the cluster
+    int calculateddistance(Point p);// function return the nearsetCluserID and we created 3 variables (double somme ,distance )(int nearcluserID )
 };

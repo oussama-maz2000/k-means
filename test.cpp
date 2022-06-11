@@ -71,7 +71,7 @@ public :
         }
         return false;
     }
-
+int getClusterId(){return clusterId;}
     void removeAllPoints() { points.clear(); }
 
     int getclusterId() { return clusterId; }
@@ -88,7 +88,7 @@ public :
 
 class Kmeans{
 public :
-int k, iterations, dimensions, total_points;
+int k, iterations, dimension, total_points;
 vector<Cluster>cluster;
  
  public : Kmeans (int k ,int nbr_iterations){
@@ -96,12 +96,32 @@ vector<Cluster>cluster;
     this->iterations=nbr_iterations;
  }
 
-  
+ int calculatedistance(Point p){
+    double somme , distance;
+    int nearclusterId;
 
-
-
-
+ for (int i=0;i<dimension;i++){
+somme=pow(cluster[0].getCentroidByPos(i)-p.getvalue(i),2);
+}
+// initialisation du distance avec la distance du premier cluster
+distance=sqrt(somme);
+// initialisation du clusterId avec le clusterId du premier cluster
+nearclusterId=cluster[0].getClusterId();
+for (int i;i<k;i++){
+    double tmp;
+    somme=0.0;
+    for(int j=0;j<dimension;j++){
+        somme=pow(cluster[i].getCentroidByPos(j)-p.getvalue(j),2);
+    }
+    tmp=sqrt(somme);
+if(tmp<distance){
+    distance=tmp;
+    nearclusterId=cluster[i].getClusterId();
+}
+}
+return nearclusterId;
 }; 
+};
 
 
 
@@ -115,7 +135,7 @@ vector<vector <double> > getFileContent(string fileName,vector<string> & vecOfSt
 
     if(!in)
     {
-        /* cout << "Cannot open the File : "<<fileName<<endl; */
+
         return v;
         
     }
@@ -154,7 +174,9 @@ for (int i = 0; i < vecOfStrs.size(); i++)
 
     
  
-
+void run(vector<Point>&poin){
+cout << poin[0].getDemension()<<endl;
+}
 
 int main (){
     vector<string> vecOfStr;
@@ -162,9 +184,8 @@ int main (){
 
 
     Point p1= Point(0,result[0]);
-   Cluster c1= Cluster(1,p1);
-int size =p1.getDemension();
-   cout << "the size of " <<size << endl; 
+    //run(result[]);
+   
 
 
 
@@ -174,4 +195,5 @@ int size =p1.getDemension();
    
 
 }
+
 ;
