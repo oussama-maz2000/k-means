@@ -36,7 +36,7 @@ public:
     void setCentroidBypos(int position ,double value);// function set the value of centroid[position]=value;
 };
 
-class Kmeans{
+class BKmeans{
 public : 
     int k; // number of clusters
     int iterations; // number of iterations it will run
@@ -44,9 +44,8 @@ public :
     int total_point; // total number of points
     vector<Cluster> clusters; // vector of clusters
 public : 
-    Kmeans(int k,int iterations); // constructor with params
+    BKmeans(int k,int iterations); // constructor with params
     void clearCluster(); //functions remove all values from the cluster
     int calculatedistance(Point p);// function return the nearsetCluserID and we created 3 variables (double somme ,distance )(int nearcluserID )
-    void runKmeans(vector<Point> p); // function running the kmeans procedure and sorry i coudln't finished it  
 };
-void writeFile(vector<Cluster> c,string fileName); // function write the result of Kmeans in file 
+void writeFile(vector<Cluster> c,string fileName); // function write the result of BKmeans in file 

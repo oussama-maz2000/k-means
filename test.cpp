@@ -78,12 +78,12 @@ int getClusterId(){return clusterId;}
     void setCentroidByPos(int pos, double val) { this->centroid[pos] = val; }
 };
 
-class Kmeans{
+class BKmeans{
 public :
 int k, iterations, dimension, total_points;
 vector<Cluster>cluster;
  
- public : Kmeans (int k ,int nbr_iterations){
+ public : BKmeans (int k ,int nbr_iterations){
     this->k=k;
     this->iterations=nbr_iterations;
  }
@@ -91,6 +91,7 @@ vector<Cluster>cluster;
  int calculatedistance(Point p){
     double somme , distance;
     int nearclusterId;
+
 
  for (int i=0;i<dimension;i++){
 somme=pow(cluster[0].getCentroidByPos(i)-p.getvalue(i),2);
@@ -115,7 +116,7 @@ return nearclusterId;
 }; 
 };
 
-vector<vector <double> > getFileContent(string fileName,vector<string> & vecOfStrs)
+vector<vector <double> > getFileContent(string fileName,vector<string> vecOfStrs)
 { 
     vector< vector<double> > v;
     
@@ -150,6 +151,15 @@ for (int i = 0; i < vecOfStrs.size(); i++)
     return v;
 } ;
 int main (){
+    vector<string>vecOfStrs;
+    vector<vector<double> > result;
+    result=getFileContent("./base.txt",vecOfStrs);
+    Point p=Point(1,result[1]);
+int dem=p.getDemension();
+int pointid=p.getPointId();
+cout << "pointid : "<< pointid<<endl;
+cout << dem ;
+
 }
 
 ;
